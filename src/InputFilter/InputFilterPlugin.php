@@ -14,6 +14,9 @@ use Laminas\Mvc\InjectApplicationEventInterface;
 
 class InputFilterPlugin extends AbstractPlugin
 {
+    /**
+     * @return InputFilterInterface|null
+     */
     public function __invoke()
     {
         $controller = $this->getController();

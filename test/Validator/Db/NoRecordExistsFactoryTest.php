@@ -13,14 +13,19 @@ use Laminas\ServiceManager\ServiceManager;
 use Laminas\Validator\Db\NoRecordExists;
 use Laminas\Validator\ValidatorPluginManager;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class NoRecordExistsFactoryTest extends TestCase
 {
+    use ProphecyTrait;
+
+    /** @var ValidatorPluginManager  */
     protected $validators;
 
+    /** @var object  */
     protected $adapter;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -40,8 +45,8 @@ class NoRecordExistsFactoryTest extends TestCase
     {
         $options = [
             'adapter' => 'CustomAdapter',
-            'table' => 'my_table',
-            'field' => 'my_field',
+            'table'   => 'my_table',
+            'field'   => 'my_field',
         ];
 
         /** @var NoRecordExists $validator */

@@ -13,14 +13,19 @@ use Laminas\ServiceManager\ServiceManager;
 use Laminas\Validator\Db\RecordExists;
 use Laminas\Validator\ValidatorPluginManager;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class RecordExistsFactoryTest extends TestCase
 {
+    use ProphecyTrait;
+
+    /** @var ValidatorPluginManager  */
     protected $validators;
 
+    /** @var object  */
     protected $adapter;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -40,8 +45,8 @@ class RecordExistsFactoryTest extends TestCase
     {
         $options = [
             'adapter' => 'CustomAdapter',
-            'table' => 'my_table',
-            'field' => 'my_field',
+            'table'   => 'my_table',
+            'field'   => 'my_field',
         ];
 
         /** @var RecordExists $validator */

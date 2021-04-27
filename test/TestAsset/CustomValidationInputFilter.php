@@ -12,6 +12,10 @@ use Laminas\InputFilter\InputFilter;
 
 class CustomValidationInputFilter extends InputFilter
 {
+    /**
+     * @param mixed|null $context
+     * @return bool
+     */
     public function isValid($context = null)
     {
         return true;

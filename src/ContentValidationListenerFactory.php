@@ -17,18 +17,15 @@ class ContentValidationListenerFactory implements FactoryInterface
     /**
      * Create and return a ContentValidationListener instance.
      *
-     * @param ContainerInterface $container
-     * @param $requestedName
+     * @param string $requestedName
      * @param array|null $options
      * @return ContentValidationListener
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
     {
-        $config = $container->has('config') ? $container->get('config') : [];
-        $contentValidationConfig = isset($config['api-tools-content-validation'])
-            ? $config['api-tools-content-validation']
-            : [];
-        $restServices = $this->getRestServicesFromConfig($config);
+        $config                  = $container->has('config') ? $container->get('config') : [];
+        $contentValidationConfig = $config['api-tools-content-validation'] ?? [];
+        $restServices            = $this->getRestServicesFromConfig($config);
 
         return new ContentValidationListener(
             $contentValidationConfig,
@@ -42,7 +39,6 @@ class ContentValidationListenerFactory implements FactoryInterface
      *
      * Provided for backwards compatibility; proxies to __invoke().
      *
-     * @param ServiceLocatorInterface $container
      * @return ContentValidationListener
      */
     public function createService(ServiceLocatorInterface $container)

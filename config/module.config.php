@@ -10,22 +10,23 @@ namespace Laminas\ApiTools\ContentValidation;
 
 use Laminas\InputFilter\InputFilterAbstractServiceFactory;
 use Laminas\ServiceManager\Factory\InvokableFactory;
+use ZF\ContentValidation\InputFilter\InputFilterPlugin;
 
 return [
-    'controller_plugins' => [
-        'aliases' => [
+    'controller_plugins'           => [
+        'aliases'   => [
             'getinputfilter' => InputFilter\InputFilterPlugin::class,
             'getInputfilter' => InputFilter\InputFilterPlugin::class,
             'getInputFilter' => InputFilter\InputFilterPlugin::class,
 
             // Legacy Zend Framework aliases
-            \ZF\ContentValidation\InputFilter\InputFilterPlugin::class => InputFilter\InputFilterPlugin::class,
+            InputFilterPlugin::class => InputFilter\InputFilterPlugin::class,
         ],
         'factories' => [
             InputFilter\InputFilterPlugin::class => InvokableFactory::class,
         ],
     ],
-    'input_filter_specs' => [
+    'input_filter_specs'           => [
         /*
          * An array of service name => config pairs.
          *
@@ -36,17 +37,17 @@ return [
          * - https://docs.laminas.dev/laminas-inputfilter/intro/
          */
     ],
-    'input_filters' => [
+    'input_filters'                => [
         'abstract_factories' => [
             InputFilterAbstractServiceFactory::class,
         ],
     ],
-    'service_manager' => [
+    'service_manager'              => [
         'factories' => [
             ContentValidationListener::class => ContentValidationListenerFactory::class,
         ],
     ],
-    'validators' => [
+    'validators'                   => [
         'factories' => [
             'Laminas\ApiTools\ContentValidation\Validator\DbRecordExists'
                 => Validator\Db\RecordExistsFactory::class,

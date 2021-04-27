@@ -26,12 +26,11 @@ class NoRecordExistsFactory implements FactoryInterface
     /**
      * Create and return a NoRecordExists validator.
      *
-     * @param ContainerInterface $container
      * @param string $requestedName
      * @param null|array $options
      * @return NoRecordExists
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
     {
         if (isset($options['adapter'])) {
             return new NoRecordExists(ArrayUtils::merge(
@@ -48,7 +47,6 @@ class NoRecordExistsFactory implements FactoryInterface
      *
      * Provided for backwards compatibility; proxies to __invoke().
      *
-     * @param ServiceLocatorInterface $validators
      * @return NoRecordExists
      */
     public function createService(ServiceLocatorInterface $validators)
